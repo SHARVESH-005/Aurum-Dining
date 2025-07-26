@@ -1,44 +1,51 @@
-import { Link, useLocation } from "react-router-dom";
-import logo from "/assets/logo5.png";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import logo from "../assets/logo5.png";
 
-const Navbar = () => {
+function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Menu", path: "/menu" },
-    { name: "Takeaway", path: "/order-takeaway" },
-    { name: "Reserve", path: "/select-date-time" },
-    { name: "Update/Cancel", path: "/update-or-delete-order" },
-  ];
+  const handleHomeClick = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white border-b border-gray-200 z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Aurum Dining Logo" className="w-10 h-10 rounded-full" />
-          <span className="text-xl font-semibold text-amber-700">Aurum Dining</span>
-        </Link>
+    <nav className="w-full bg-black text-white fixed top-0 left-0 shadow-lg z-30 font-oswald">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
+        <div className="h-full flex items-center ml-[-35px]">
+          <img src={logo} alt="Logo" className="h-14" />
+          <p className="text-5xl pb-4 font-trajan">Aurum Dining</p>
+        </div>
 
-        <ul className="hidden md:flex space-x-6">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <Link
-                to={link.path}
-                className={`text-sm font-medium ${
-                  location.pathname === link.path
-                    ? "text-amber-700 border-b-2 border-amber-600"
-                    : "text-gray-600 hover:text-amber-600"
-                } transition`}
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center space-x-8 text-lg font-semibold">
+          <Link to="/" onClick={handleHomeClick} className="hover:text-[#8C7427] transition duration-300 cursor-pointer">
+            Home
+          </Link>
+          <Link to="/menu" className="hover:text-[#8C7427] transition duration-300 cursor-pointer">
+            Menu
+          </Link>
+          <Link to="/select-date-time" className="hover:text-[#8C7427] transition duration-300 cursor-pointer">
+            Reserve
+          </Link>
+          <Link to="/order-takeaway" className="hover:text-[#8C7427] transition duration-300 cursor-pointer">
+            Takeaway
+          </Link>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 h-10 rounded-md font-medium transition-colors duration-300 flex items-center justify-center"
+            onClick={() => navigate('/admin-login')}
+          >
+            Admin
+          </motion.button>
+        </div>
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
