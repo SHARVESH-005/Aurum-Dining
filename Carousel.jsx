@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Import images from assets
 import food1 from "/assets/food1.jpg";
 import food2 from "/assets/food2.jpg";
 import food5 from "/assets/food5.avif";
@@ -12,7 +11,6 @@ const images = [food1, food2, food5, restaurant1];
 const Carousel = () => {
   const [index, setIndex] = useState(0);
 
-  // Auto-slide every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
