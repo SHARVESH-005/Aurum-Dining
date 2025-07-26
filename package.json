@@ -12,7 +12,7 @@
     "react-router-dom": "^6.21.2"
   },
   "scripts": {
-    "start": "react-scripts start", 
+    "start": "react-scripts start",
     "build": "react-scripts build"
   }
 }
@@ -29,4 +29,3 @@
     "start": "node server.js"
   }
 }
-
