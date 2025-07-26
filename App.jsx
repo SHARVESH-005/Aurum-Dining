@@ -13,10 +13,7 @@ import bgImage from "/images/hk-background.png";
 import AdminLogin from "./components/AdminLogin";
 import AdminDashboard from "./components/AdminDashboard";
 
-// In <AnimatedRoutes />:
-<Route path="/admin-login" element={<PageWrapper><AdminLogin /></PageWrapper>} />
-<Route path="/admin-dashboard" element={<PageWrapper><AdminDashboard /></PageWrapper>} />
-
+// AnimatedRoutes component handles the application routes
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -31,11 +28,14 @@ function AnimatedRoutes() {
         <Route path="/order-takeaway" element={<PageWrapper><Takeaway /></PageWrapper>} />
         <Route path="/order-confirmation/:orderId" element={<PageWrapper><OrderConfirmation /></PageWrapper>} />
         <Route path="/update-or-delete-order" element={<PageWrapper><UpdateOrDeleteOrder /></PageWrapper>} />
+        <Route path="/admin-login" element={<PageWrapper><AdminLogin /></PageWrapper>} />
+        <Route path="/admin-dashboard" element={<PageWrapper><AdminDashboard /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );
 }
 
+// PageWrapper adds motion effects to route transitions
 const PageWrapper = ({ children }) => (
   <motion.div
     initial={{ opacity: 0, x: 50 }}
@@ -47,6 +47,7 @@ const PageWrapper = ({ children }) => (
   </motion.div>
 );
 
+// App component renders the overall layout
 function App() {
   return (
     <Router>
